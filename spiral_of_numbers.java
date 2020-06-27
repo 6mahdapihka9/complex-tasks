@@ -39,21 +39,20 @@ public class spiral_of_numbers {
 		int SquareSqrt = (int)Math.sqrt(Square);
 		
 		//determining size of rectangle or square
-		if ( inputNumber > Square && inputNumber <= Square + SquareSqrt ) { 
+		if ( inputNumber > Square && inputNumber <= Square + SquareSqrt ) 
 			if (direction%2 == 0) 
 				array = new int[ SquareSqrt ][ UpperSquareSqrt ];
 			else
 				array = new int[ UpperSquareSqrt ][ SquareSqrt ];
-		} else if (inputNumber > Square + SquareSqrt) {
+		else if (inputNumber > Square + SquareSqrt) 
 			array = new int[ UpperSquareSqrt ][ UpperSquareSqrt ];
-		} else {
+		else 
 			array = new int[ SquareSqrt ][ SquareSqrt ];
-		}
 		
 		int halfArrHeight = (int)(array.length/2);
 		int halfArrWidth = (int)(array[0].length/2);
 		
-		//different spin direction - different position of '1'  
+		//different spin direction = different position of '1'  
 		if (spin == 0) {
 			//determining vertical start position
 			if (array.length%2 != 0) 
@@ -97,13 +96,7 @@ public class spiral_of_numbers {
 		// 1 1    2   2      3     3        4       4
 		//[0-1 - 2-2-3-3 - 0-0-0-1-1-1 - 2-2-2-2-3-3-3-3 -...]
 		for (int i = 0, step = 1, spiral = 1, cdStep = step, cdSpiral = cdStep*2; i < array.length*array[0].length; i++) {
-			try {
 			array[ver][hor] = (inputNumber >= i+1)?i + 1 : 0;
-			} catch (ArrayIndexOutOfBoundsException exc) {
-				//in case of an error the coordinates will be printed
-				System.out.println(inputNumber + " " + (array.length-1) + " " + (array[0].length-1) + " " + ver + " " + hor + "\t\t\t---------------------------------");
-				break;
-			}
 			move();
 			cdStep--;
 			cdSpiral--;
@@ -176,7 +169,3 @@ public class spiral_of_numbers {
 		}
 	}
 }
-//	TEST
-//System.out.println(ver + " " + hor + " " + (inputNumber < (int)((UpperSquare + LowerSquare)/2)+1));
-//System.out.println(UpperSquare+ " " + LowerSquare + " " + array.length + " " + array[0].length);
-//System.out.println("beg " + (i+1) + ", dir " + direction + ", ver " + ver + ", hor " + hor);
